@@ -1,0 +1,169 @@
+
+
+.formcontainer{
+    background: url('../../public/assets/grid.svg');
+    
+    position: relative;
+    z-index: 50;
+}
+.content{
+    background-color: #070c28;
+   
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+.formwrapper{
+    background-color: #0a1035;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius:30px ;
+    padding: 20px 60px;
+    height: 390px;
+
+    .loginTextWrapper{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .logo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+        .loginHeading{
+            color: #a4a6b0        ;
+            font-size: 30px;
+            margin: 0px;
+     }
+        .loginHandWave {
+            background: var(--Linear-gradient, linear-gradient(180deg, #f6f6f7 0%, #7e808f 100%)) ;
+            background-clip: text;
+            -webkit-background-clip: text;
+            font-family: 'Space Grotesk';
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 120%;
+        }
+    }
+        .loginDescription {
+            color: #8f9bb7;
+            font-size: 15px;
+            margin: 10px 0px 0px 0px;
+            width: 80%;
+            text-align: center;
+           
+        }
+    }
+
+    .orhr-line2{
+        width: 80%;
+        height: 1px;
+        margin: 0px;
+        background-image: linear-gradient( to left, rgba(255, 255, 255, 0.309), transparent );
+        border: 0;
+    }
+    
+    
+
+    form{
+        display: flex;
+         flex-direction: column;
+         gap: 15px;
+     }
+     label{
+        font-size: 20px;
+        color:#a4a6b0 ;
+     }
+     input{
+         padding: 10px;
+         border:none;
+         border-radius: 10px;
+         height: 30px;
+         color: rgb(175, 175, 175);
+
+         width: 30vw;
+         /* border-bottom: 1px solid #a7bcff ; */
+         background-color: #08113f;
+
+         &::placeholder{
+             color: rgb(175, 175, 175);
+             background-color: #08113f;
+
+             /* border: none; */
+         }
+     }
+     input:focus {
+        outline: none; /* Remove the default focus outline */
+        box-shadow: none; /* Remove any box-shadow on focus */
+        border: none; /* Remove the border on focus */
+      }
+     .btt{
+         background-color: #1b3298;
+         color: white;
+         padding: 5px;
+         font-weight: bold;
+         height: 40px;
+         border: none;
+         cursor: pointer;
+         border-radius: 10px;
+         font-size: 20px;
+
+     }
+
+}
+.error{
+    background: rgb(255, 210, 210);
+    position: fixed;
+    top: 15px;
+    height: 50px;
+    right: 15px;
+    border-radius: 10px;
+    width: 300px;
+    font-size: 20px;
+    color: #62467d
+    ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.success{
+    background:#d1e7dd;
+    position: fixed;
+    top: 15px;
+    height: 50px;
+    right: 15px;
+    border-radius: 10px;
+    width: 300px;
+    font-size: 20px;
+    color: #7a7092
+    ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input-container {
+    position: relative;
+  }
+  
+  .input-container span {
+    position: absolute;
+    right: 10px; /* Adjust the distance from the right side as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .input-container input {
+    padding-right: 30px; /* Ensure space for the icon */
+    width: 29vw;
+
+  }

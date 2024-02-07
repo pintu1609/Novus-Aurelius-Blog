@@ -1,0 +1,43 @@
+.blogcontets{
+    width: 390px;
+    background-color: #0a1035;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+    border-radius: 20px;
+    margin: 20px;
+    
+.blogtit{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+
+        
+
+    }
+    img{
+        width: 100%;
+        height: 150px;
+        border-radius: 20px;
+    }
+
+}
+.des{
+    display: flex;
+    
+    width: max-content;
+    padding-top: 10px;
+    flex-direction: column;
+    gap: 10px;
+
+    
+    .title{
+        color: white;        ;
+        font-size: 25px;
+
+    
+    
+
+}
+}

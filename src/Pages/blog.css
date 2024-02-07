@@ -1,0 +1,169 @@
+.blog{
+    background-color: #070c28;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+.blogcontent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 60px;
+
+}
+.blogwrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.blogwrappertop{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0px 60px 20px 60px;
+    .backbtt{
+        font-size: 18px;
+        color:#a4a6b0 ;
+        margin: 0px 0px 0px 25px;
+        cursor: pointer;
+    }
+    .backbtt:hover{
+        color: #fff;
+    }
+
+.blogtitle{
+    color: #a4a6b0  ;      ;
+    font-size: 30px;
+    width: max-content;
+    /* margin-left: 40vw; */
+
+}
+.fa-right-from-bracket{
+    color: #a4a6b0;
+    cursor: pointer;
+}
+form{
+    display: flex;
+     flex-direction: column;
+     gap: 10px;
+     height: 530px;
+     overflow: auto;
+     width: 50vw;
+ }
+ label{
+    font-size: 20px;
+    color:#a4a6b0 ;
+ }
+ input{
+    padding: 10px;
+    border:none;
+    border-radius: 10px;
+    height: 25px;
+    width: 44vw;
+    /* border-bottom: 1px solid #a7bcff ; */
+    background: #161e4a;
+    color: rgb(175, 175, 175);
+
+
+    &::placeholder{
+        color: rgb(175, 175, 175);
+        font-size: 18px;
+    }
+   font-size: 18px;
+}
+input:focus {
+    outline: none; /* Remove the default focus outline */
+    box-shadow: none; /* Remove any box-shadow on focus */
+    border: none; /* Remove the border on focus */
+  }
+textarea{
+    border-radius: 15px;
+    padding: 10px;
+    width: 44vw;
+    background: #161e4a;
+    color: rgb(175, 175, 175);
+    border: 0;
+
+
+    &::placeholder{
+        color: rgb(175, 175, 175);
+        font-size: 18px;
+    }
+    font-size: 18px;
+}
+textarea:focus {
+    outline: none; /* Remove the default focus outline */
+    box-shadow: none; /* Remove any box-shadow on focus */
+    border: none; /* Remove the border on focus */
+  }
+
+.btt1{
+    background-color: #1b3298;
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+    height: 30px;
+    border: none;
+    width: 120px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 20px;
+}
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-label {
+    font-size: 20px;
+    color: #a4a6b0;
+    margin-right: 10px;
+}
+
+.checkbox-input {
+    width: 20px;
+    height: 20px;
+}
+}
+.allblog{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    width: 75vw;
+
+    
+.blogtitle{
+    color: #a4a6b0        ;
+    font-size: 30px;
+}
+.blogs{
+    /* display: flex;
+    flex-direction: row; */
+}
+}
+.success-message{
+    background:#d1e7dd;
+    position: fixed;
+    top: 15px;
+    height: 50px;
+    right: 15px;
+    border-radius: 10px;
+    width: 300px;
+    font-size: 20px;
+    color: #7a7092
+    ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
