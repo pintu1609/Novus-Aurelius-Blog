@@ -1,5 +1,4 @@
 
-
 .formcontainer{
     background: url('../../public/assets/grid.svg');
     
@@ -8,7 +7,6 @@
 }
 .content{
     background-color: #070c28;
-   
     min-height: 90vh;
     display: flex;
     justify-content: center;
@@ -26,19 +24,19 @@
     padding: 20px 60px;
     height: 390px;
 
-    .loginTextWrapper{
+    .logintextwrapper{
         display: flex;
         flex-direction: column;
         /* justify-content: center; */
         align-items: center;
-        .logo{
+        .loginheader{
            display: flex;
            /* flex-direction: row;
            justify-content: center;
            align-items: center;
             text-align: center; */
 
-        .loginHeading{
+        .loginheading{
             color: #a4a6b0        ;
             font-size: 30px;
             margin: 0px;

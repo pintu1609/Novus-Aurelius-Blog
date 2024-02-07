@@ -107,10 +107,10 @@ const Login = () => {
 
     <div className='content'>
     <div className="formwrapper">
-    <div className="loginTextWrapper">
-      <div className='logo'>
+    <div className="logintextwrapper">
+      <div className='loginheader'>
 
-                <h1 className="loginHeading">Welcome Back</h1>
+                <h1 className="loginheading">Welcome Back</h1>
                 <span className="loginHandWave">👋</span>
       </div>
                 <p className="loginDescription">
