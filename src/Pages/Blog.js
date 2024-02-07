@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './blog.css';
 import axios from 'axios';
+import { BeatLoader } from 'react-spinners';
+
 
 // import Blogpost from './Blogpost';
 import {  useNavigate } from 'react-router-dom';
@@ -47,11 +49,13 @@ const Blog = () => {
   });
 
   const [subtitles, setSubtitles] = useState([{ subtitle: "" }]);
+  const [loading, setLoading] = useState(false); // State to control loading indicator
 
   
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true when form is submitted
 
     
     try {
@@ -96,12 +100,18 @@ const Blog = () => {
         }
         else {
           console.error("Unsuccessful login:", response.data.Message);
+          setLoading(false); // Set loading to false after form submission is complete
+
         }
       } else {
         console.error("Unexpected status code:", response.status);
+        setLoading(false); // Set loading to false after form submission is complete
+
       }
     } catch (error) {
       console.error("Error:", error);
+      setLoading(false); // Set loading to false after form submission is complete
+
     }
   };
 
@@ -211,7 +221,15 @@ const handleRemoveDescription = (index, index2) => {
  
 
   return (
-    <div className='blog'>
+    
+    
+    <div >
+      <div className='blog' >
+        <div className='blogcontainer'>
+
+        
+
+      
       <div className='blogwrapper'>
 
       
@@ -338,7 +356,7 @@ const handleRemoveDescription = (index, index2) => {
           </div>
 
           <button className='btt1' type='submit'>
-            Post Blog
+           {loading?(<BeatLoader size={12} color="white" />):('Post Blog')}
           </button>
         </form>
       </div>
@@ -347,6 +365,8 @@ const handleRemoveDescription = (index, index2) => {
         <span className='blogtitle'> Your Blog</span>
         <Blogpost onDeleteSuccess={handleDeleteSuccess} />
       </div> */}
+    </div>
+    </div>
     </div>
     </div>
     </div>

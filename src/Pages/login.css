@@ -60,6 +60,7 @@
         border: 0;
     }
     form{
+        padding-top: 10px;
         display: flex;
          flex-direction: column;
          gap: 15px;

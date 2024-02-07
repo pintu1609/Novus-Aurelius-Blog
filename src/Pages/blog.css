@@ -1,10 +1,13 @@
 .blog{
     background-color: #070c28;
+    
     min-height: 100vh;
+
+}
+.blogContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 
 
