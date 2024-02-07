@@ -35,11 +35,11 @@
            align-items: center;
             text-align: center; */
 
-        .loginheading{
-            color: #a4a6b0        ;
+            .loginheading{
+            color: #a4a6b0;
             font-size: 30px;
             margin: 0px;
-     }
+            }
         .loginHandWave {
             background: var(--Linear-gradient, linear-gradient(180deg, #f6f6f7 0%, #7e808f 100%)) ;
             background-clip: text;
@@ -68,9 +68,6 @@
         background-image: linear-gradient( to left, rgba(255, 255, 255, 0.309), transparent );
         border: 0;
     }
-    
-    
-
     form{
         display: flex;
          flex-direction: column;
