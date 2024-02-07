@@ -107,8 +107,8 @@ const Login = () => {
 
     <div className='content'>
     <div className="formwrapper">
-    <div className="loginTextWrapper">
-      <div className='logo'>
+    <div className="loginTextWrapper" style={{display:flex, flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
+      <div className='logo' style={{display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
 
                 <h1 className="loginHeading">Welcome Back</h1>
                 <span className="loginHandWave">👋</span>
