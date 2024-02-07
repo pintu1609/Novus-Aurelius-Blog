@@ -67,12 +67,12 @@ const Navbar = () => {
                 <div className="navleft">
                     <img src="/assets/app-logo-main.svg" alt="" />
                 </div>
-                <div className="navright">
+                <div className="navright" style={{display:'flex'}}>
                     <img src={profile?.profile_avatar_url ? profile?.profile_avatar_url :profile?.profile_pic_url} alt="" className='profile' />
                     <img src="/assets/dropDown.png" alt="" style={{cursor:'pointer'}} className='dropdown' onClick={toggleSidebar} />
                 </div>
                 {isOpen && (
-                    <div className="sidebar-nav">
+                    <div className="sidebar-nav" style={{display:'flex'}}>
                         <img src="/assets/logout.svg" alt="" />
                         <p className="log" onClick={handleLogout}> Logout </p>
                     </div>

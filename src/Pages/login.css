@@ -24,17 +24,8 @@
     height: 390px;
 
     .logintextwrapper{
-        /* display: flex;
-        flex-direction: column;
-        /* justify-content: center; */
-        /* align-items: center; */ 
         .loginheader{
-           /* display: flex; */
-           /* flex-direction: row;
-           justify-content: center;
-           align-items: center;
-            text-align: center; */
-
+           
             .loginheading{
             color: #a4a6b0;
             font-size: 30px;
