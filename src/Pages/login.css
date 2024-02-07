@@ -1,7 +1,6 @@
 
 .formcontainer{
     background: url('../../public/assets/grid.svg');
-    
     position: relative;
     z-index: 50;
 }
