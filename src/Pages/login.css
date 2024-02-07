@@ -27,16 +27,15 @@
     height: 390px;
 
     .loginTextWrapper{
-        align-items: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
-
+        align-items: center;
         .logo{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+           display: flex;
+           flex-direction: row;
+           justify-content: center;
+           align-items: center;
             text-align: center;
 
         .loginHeading{
