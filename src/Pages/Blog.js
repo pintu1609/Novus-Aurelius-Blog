@@ -237,7 +237,7 @@ const handleRemoveDescription = (index, index2) => {
 
     <div className='blogcontent'>
       <div className='blogwrappertop'>
-        <div style={{display:'flex', justifyContent:'space-between',alignItems:'center', width:'85%', marginRight:'60%'}}>
+        <div style={{display:'flex', justifyContent:'space-between',alignItems:'center', width:'75%', marginRight:'50%'}}>
           <p className='backbtt'  onClick={handleBack}>Back</p>
         <span className='blogtitle'>Post a new blog</span>
           {/* <i className="fa-solid fa-right-from-bracket" style={{color:'#a4a6b0', marginLeft:'36vw', cursor:'pointer'}} onClick={handleLogout}
