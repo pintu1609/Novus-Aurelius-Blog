@@ -89,6 +89,8 @@ const BlogDetails = () => {
                           >
                             {data?.content?.subtitle}
                           </p>
+                          <img src={data?.content?.subtitle_image_url} alt="" style={{borderRadius:'15px', objectFit:'cover',width:'100%',height:'40%'}} />
+
                           {data?.content?.description.map((desc, index) => (
                             <p key={index}>{desc}</p>
                           ))}

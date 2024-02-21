@@ -33,20 +33,28 @@ const Blog = () => {
     media_b64: "",
     file_name: "",
   });
+  const [selectedSubtitleImage, setSelectedSubtitleImage] = useState({
+    media_b64: "",
+    file_name: "",
+  });
         // eslint-disable-next-line
   const [filePreview, setFilePreview] = useState(null);
   // const { state } = useLocation();
 
 
+  console.log("🚀 ~ Blog ~ selectedSubtitleImage:", selectedSubtitleImage)
   const [blog, setBlog] = useState({
     title: "",
     image: selectedImage,
     content: [{
       subtitle: "",
+      subtitle_image:selectedSubtitleImage,
       description: [""],
     }],
     is_featured: false,
   });
+  console.log("🚀 ~ Blog ~ blog:", blog)
+
 
   const [subtitles, setSubtitles] = useState([{ subtitle: "" }]);
   const [loading, setLoading] = useState(false); // State to control loading indicator
@@ -92,7 +100,7 @@ const Blog = () => {
 
         }
         if (response.data.Status === 451) {
-          console.log('🚀 ~ fetchData ~ data.Status:', response.Status === 451);
+          console.log('🚀 ~ fetchData ~ data.Status:', response.status === 451);
           localStorage.removeItem('token');
 
           // logout();
@@ -128,8 +136,10 @@ const Blog = () => {
   
   useEffect(() => {
     setBlog((prev)=>({...prev, image:selectedImage}))
+    // setBlog((prev)=>({...prev, subtitle_image:selectedSubtitleImage}))
+
   
-  }, [selectedImage])
+  }, [selectedImage, ])
   // useEffect(() => {
   //   if (state && state.loginSuccess) {
   //     setSuccessMessage('Login successful!');
@@ -147,7 +157,7 @@ const Blog = () => {
       ...prevFormData,
       content: [
         ...prevFormData.content,
-        { subtitle: "", description: [""] },
+        { subtitle: "",subtitle_image:"", description: [""] },
       ],
     }));
   };
@@ -307,6 +317,30 @@ const handleRemoveDescription = (index, index2) => {
                   </>
                 )}
               </div>
+
+              <label>Choose Subtitle Image</label>
+         
+             <input
+                  type="file"
+                  id="imageInputs"
+                  // style={{ height:'30px' ,'::placeholder': { height: '23px' } }}
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onload = (e) => {
+                        const base64Image = e.target.result;
+                        setSelectedSubtitleImage({
+                          media_b64: base64Image.split(",")[1],
+                          file_name: file.name,
+                        });
+                        setFilePreview(file);
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                  }}
+                />
             
           <label>Descriptions</label>
           <div>
