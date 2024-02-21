@@ -33,22 +33,25 @@ const Blog = () => {
     media_b64: "",
     file_name: "",
   });
-  const [selectedSubtitleImage, setSelectedSubtitleImage] = useState({
-    media_b64: "",
-    file_name: "",
-  });
+  // const [selectedSubtitleImage, setSelectedSubtitleImage] = useState({
+  //   media_b64: "",
+  //   file_name: "",
+  // });
         // eslint-disable-next-line
   const [filePreview, setFilePreview] = useState(null);
   // const { state } = useLocation();
 
 
-  console.log("🚀 ~ Blog ~ selectedSubtitleImage:", selectedSubtitleImage)
+  // console.log("🚀 ~ Blog ~ selectedSubtitleImage:", selectedSubtitleImage)
   const [blog, setBlog] = useState({
     title: "",
     image: selectedImage,
     content: [{
       subtitle: "",
-      subtitle_image:selectedSubtitleImage,
+      subtitle_image:{
+        media_b64:"",
+        file_name:"",
+      },
       description: [""],
     }],
     is_featured: false,
@@ -85,14 +88,24 @@ const Blog = () => {
           }, 2000);
           setBlog({
             title: "",
-            image: "",
+            image: {
+              media_b64:"",
+              file_name:"",
+            },
             content: [{
             subtitle: "",
+            subtitle_image: {
+              media_b64:"",
+              file_name:"",
+            },
             description: [""],
     }],
     is_featured: false,
           });
-          setSubtitles([{ subtitle: "" }]);
+          setSubtitles([{ subtitle: "" ,subtitle_image: {
+            media_b64:"",
+            file_name:"",
+          },}]);
           setSelectedImage({
             media_b64: "",
             file_name: "",
@@ -152,12 +165,18 @@ const Blog = () => {
   
 
   const handleAddSubtitle = () => {
-    setSubtitles((prevSubtitles) => [...prevSubtitles, { subtitle: "" }]);
+    setSubtitles((prevSubtitles) => [...prevSubtitles, { subtitle: "",subtitle_image: {
+      media_b64:"",
+      file_name:"",
+    }, }]);
     setBlog((prevFormData) => ({
       ...prevFormData,
       content: [
         ...prevFormData.content,
-        { subtitle: "",subtitle_image:"", description: [""] },
+        { subtitle: "",subtitle_image:{
+          media_b64:"",
+          file_name:"",
+        }, description: [""] },
       ],
     }));
   };
@@ -177,6 +196,7 @@ const Blog = () => {
     }
   };
 
+
   const handleSubtitleChange = (index, e) => {
     const { value } = e.target;
     setSubtitles((prevSubtitles) => {
@@ -190,6 +210,8 @@ const Blog = () => {
       return { ...prevFormData, content: updatedContent };
     });
   };
+
+  
 
   const handleAddDescription = (index, index2) => {
     if(blog.content[index].description[blog.content[index].description.length-1]){
@@ -224,6 +246,32 @@ const handleRemoveDescription = (index, index2) => {
       return { ...prevFormData, content: updatedContent };
     });
   };
+
+  const handleSubtitleImageChange = (index, e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64Image = e.target.result;
+        setBlog((prevFormData) => {
+          const updatedContent = [...prevFormData.content];
+          updatedContent[index].subtitle_image = { media_b64: base64Image.split(",")[1], file_name: file.name };
+          return { ...prevFormData, content: updatedContent };
+        });
+        setFilePreview(file);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // If no image is selected, include an empty subtitle_image
+      setBlog((prevFormData) => {
+        const updatedContent = [...prevFormData.content];
+        updatedContent[index].subtitle_image = { media_b64: "", file_name: "" };
+        return { ...prevFormData, content: updatedContent };
+      });
+    }
+  };
+  
+
   const handleBack =()=>{
     navigate('/blogpost')
   }
@@ -318,30 +366,27 @@ const handleRemoveDescription = (index, index2) => {
                 )}
               </div>
 
+              <div>
+
               <label>Choose Subtitle Image</label>
          
-             <input
-                  type="file"
-                  id="imageInputs"
-                  // style={{ height:'30px' ,'::placeholder': { height: '23px' } }}
-                  accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                      const reader = new FileReader();
-                      reader.onload = (e) => {
-                        const base64Image = e.target.result;
-                        setSelectedSubtitleImage({
-                          media_b64: base64Image.split(",")[1],
-                          file_name: file.name,
-                        });
-                        setFilePreview(file);
-                      };
-                      reader.readAsDataURL(file);
-                    }
-                  }}
-                />
+              <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleSubtitleImageChange(index, e)}
+                    />
+                    {/* {blog.content[index].subtitle_image && blog.content[index].subtitle_image.map((image, i) => (
+                      <img key={i} src={`data:image/jpeg;base64,${image.media_b64}`} alt={`Subtitle ${index + 1}`} style={{width:'70%',height:'70px', padding:'10px', borderRadius:'15px', objectFit:'cover'}} />
+                    ))} */}
+                    {/* {index > 0 && (
+                      <i
+                        className="fa-solid fa-minus"
+                        style={{ color: 'white', marginLeft: '10px', cursor: 'pointer' }}
+                        onClick={() => handleRemoveSubtitle(index)}
+                      ></i>
+                    )} */}
             
+            </div>
           <label>Descriptions</label>
           <div>
             {blog.content[index].description.map((desc, index2) => (
