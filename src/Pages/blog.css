@@ -58,10 +58,23 @@ form{
     display: flex;
      flex-direction: column;
      gap: 10px;
-     height: 570px;
+     height: 670px;
      overflow: auto;
      width: 50vw;
  }
+ form::-webkit-scrollbar {
+    width: 6px; /* Set the width of the scrollbar */
+    /* height: 100%; */
+  }
+  form::-webkit-scrollbar-track {
+    /* background: #f1f1f1; Set the background color of the scrollbar track */
+  }
+  
+  /* Handle */
+  form::-webkit-scrollbar-thumb {
+    background: #161e4a; /* Set the color of the scrollbar thumb */
+    border-radius: 4px; /* Round the corners of the scrollbar thumb */
+  }
  label{
     font-size: 20px;
     color:#a4a6b0 ;

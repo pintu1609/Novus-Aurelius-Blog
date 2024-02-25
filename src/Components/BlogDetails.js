@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-import './blogDetails.css';
+import React, { useEffect, useState, useCallback } from "react";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+import "./blogDetails.css";
 
 const BASE_URL = process.env.BASE_URL || "https://stagingbe.novusaurelius.com/";
 
@@ -13,13 +13,18 @@ const BlogDetails = () => {
 
   const getPostdetails = useCallback(async () => {
     try {
-      const response = await axios.post(`${BASE_URL}/post_login/blog/fetch_blog_post/`, { blog_id: item.blog_id }, {
-        headers: {
-          Authorization: "x@pcPvmFcaUrMHQKY4@pNYG22rE&vAk&P-YmnjWx-/mGxr2wcqXXVUnW89S?d@6S",
-          "Content-Type": "application/json",
-          accesstoken: `${token}`,
-        },
-      });
+      const response = await axios.post(
+        `${BASE_URL}/post_login/blog/fetch_blog_post/`,
+        { blog_id: item.blog_id },
+        {
+          headers: {
+            Authorization:
+              "x@pcPvmFcaUrMHQKY4@pNYG22rE&vAk&P-YmnjWx-/mGxr2wcqXXVUnW89S?d@6S",
+            "Content-Type": "application/json",
+            accesstoken: `${token}`,
+          },
+        }
+      );
       console.log("🚀 ~ getPostdetails ~ response:", response);
       if (response.status === 200) {
         if (response.data.Status === 200) {
@@ -40,7 +45,21 @@ const BlogDetails = () => {
   }, [getPostdetails]);
 
   if (!blogDetails) {
-    return <p style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100vw', height: '100vh', background: '#070c28', color: '#fff' }}>Loading...</p>;
+    return (
+      <p
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100vw",
+          height: "100vh",
+          background: "#070c28",
+          color: "#fff",
+        }}
+      >
+        Loading...
+      </p>
+    );
   }
 
   return (
@@ -58,17 +77,13 @@ const BlogDetails = () => {
             <div className="vertical-line" />
             <div className="logo-right-main">
               <img width={20} src="/assets/date-logo.svg" alt="" />
-              <p>
-                {blogDetails.map(
-                  (item) => item?.added_date.split('T')[0]
-                )}
-              </p>
+              <p>{blogDetails.map((item) => item?.added_date.split("T")[0])}</p>
             </div>
           </div>
           <img
-            style={{ borderRadius: '15px', objectFit: 'cover' }}
-            height={'400px'}
-            width={'100%'}
+            style={{ borderRadius: "15px", objectFit: "cover" }}
+            height={"400px"}
+            width={"100%"}
             src={blogDetails.map((item) => item?.blog_image_url)}
             alt="blog_image"
           />
@@ -79,21 +94,60 @@ const BlogDetails = () => {
                   {blogDetails.map((item) =>
                     item?.blog_content?.map((data) => (
                       <>
-                        <div
-                          key={data?.content_id}
-                          className="inner-content"
-                        >
+                        <div key={data?.content_id} className="inner-content">
                           <p
-                            className='inner-content-bold'
-                            style={{ margin: '0px' }}
+                            className="inner-content-bold"
+                            style={{ margin: "0px" }}
                           >
                             {data?.content?.subtitle}
                           </p>
-                          <img src={data?.content?.subtitle_image_url} alt="" style={{borderRadius:'15px', objectFit:'cover',width:'100%'}} />
+                          {/* {data?.content?.image_position === "top" && ( */}
+                          {data?.content?.subtitle_image_url && (
 
+                            <img
+                              src={data?.content?.subtitle_image_url}
+                              alt=""
+                              style={{
+                                borderRadius: "15px",
+                                objectFit: "cover",
+                                width: "80%",
+                                height:'300px',
+                                aspectRatio:'20/20'
+                              }}
+                            />)}
+                          {/* )} */}
                           {data?.content?.description.map((desc, index) => (
-                            <p key={index}>{desc}</p>
+                            <>
+                              <p>{desc?.desc}</p>
+                              {desc?.desc_img && (
+                                  <img
+                                    src={desc?.desc_img}
+                                    alt=""
+                                    style={{
+                                      borderRadius: "15px",
+                                      objectFit: "cover",
+                                      width: "80%",
+                                      height:'300px',
+                                      aspectRatio:'20/20'
+
+
+                                    }}
+                                  />
+                              )}
+                                  </>
+                                
                           ))}
+                          {/* {data?.content?.image_position === "bottom" && (
+                            <img
+                              src={data?.content?.subtitle_image_url}
+                              alt=""
+                              style={{
+                                borderRadius: "15px",
+                                objectFit: "cover",
+                                width: "100%",
+                              }}
+                            />
+                          )} */}
                         </div>
                       </>
                     ))
@@ -106,6 +160,6 @@ const BlogDetails = () => {
       </div>
     </div>
   );
-}
+};
 
 export default BlogDetails;

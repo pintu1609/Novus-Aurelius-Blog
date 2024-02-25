@@ -52,7 +52,14 @@ const Blog = () => {
         media_b64:"",
         file_name:"",
       },
-      description: [""],
+      image_position: "", // Add subtitle_position here
+
+      description: [{
+       desc: "",
+      desc_img:{
+        media_b64:"",
+        file_name:"",
+      }}],
     }],
     is_featured: false,
   });
@@ -98,7 +105,13 @@ const Blog = () => {
               media_b64:"",
               file_name:"",
             },
-            description: [""],
+            image_position: "",
+            description: [{
+              desc: "",
+             desc_img:{
+               media_b64:"",
+               file_name:"",
+             }}],
     }],
     is_featured: false,
           });
@@ -176,7 +189,12 @@ const Blog = () => {
         { subtitle: "",subtitle_image:{
           media_b64:"",
           file_name:"",
-        }, description: [""] },
+        }, description: [{
+          desc: "",
+         desc_img:{
+           media_b64:"",
+           file_name:"",
+         }}] },
       ],
     }));
   };
@@ -217,12 +235,16 @@ const Blog = () => {
     if(blog.content[index].description[blog.content[index].description.length-1]){
       setBlog((prevFormData) => {
         const updatedContent = [...prevFormData.content];
-        updatedContent[index].description[index2+1]=""
-        
+        // if (updatedContent[index]) {
+
+        updatedContent[index].description[index2+1]=({ desc: "", desc_img: { media_b64: "", file_name: "" } });
+        // }
         return { ...prevFormData, content: updatedContent };
       });
     }
   };
+
+  
 
 
 
@@ -237,15 +259,15 @@ const handleRemoveDescription = (index, index2) => {
 };
 
 
-  const handleDescriptionChange = (index,index2, e) => {
-    const { value } = e.target;
-    
-    setBlog((prevFormData) => {
-      const updatedContent = [...prevFormData.content];
-      updatedContent[index].description[index2] = value;
-      return { ...prevFormData, content: updatedContent };
-    });
-  };
+const handleDescriptionChange = (index,index2, e) => {
+  const { value } = e.target;
+  
+  setBlog((prevFormData) => {
+    const updatedContent = [...prevFormData.content];
+    updatedContent[index].description[index2].desc = value;
+    return { ...prevFormData, content: updatedContent };
+  });
+};
 
   const handleSubtitleImageChange = (index, e) => {
     const file = e.target.files[0];
@@ -270,6 +292,40 @@ const handleRemoveDescription = (index, index2) => {
       });
     }
   };
+
+  const handleSubtitlePositionChange = (index, e) => {
+    const { value } = e.target;
+    setBlog((prevFormData) => {
+      const updatedContent = [...prevFormData.content];
+      updatedContent[index].image_position = value;
+      return { ...prevFormData, content: updatedContent };
+    });
+  };
+
+  const handleDescriptionImageChange = (index,index2, e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64Image = e.target.result;
+        setBlog((prevFormData) => {
+          const updatedContent = [...prevFormData.content];
+          updatedContent[index].description[index2].desc_img = { media_b64: base64Image.split(",")[1], file_name: file.name };
+          return { ...prevFormData, content: updatedContent };
+        });
+        setFilePreview(file);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      // If no image is selected, include an empty subtitle_image
+      setBlog((prevFormData) => {
+        const updatedContent = [...prevFormData.content];
+        updatedContent[index].description[index2].desc_img = { media_b64: "", file_name: "" };
+        return { ...prevFormData, content: updatedContent };
+      });
+    }
+  };
+
   
 
   const handleBack =()=>{
@@ -304,7 +360,7 @@ const handleRemoveDescription = (index, index2) => {
         <form onSubmit={handleSubmit}>
         {successMessage && <div className="success-message">{successMessage}</div>}
 
-
+            <div style={{display:'flex',flexDirection:'column'}}>
           <label>Title</label>
           <input
             type="text"
@@ -313,6 +369,8 @@ const handleRemoveDescription = (index, index2) => {
             value={blog.title}
             onChange={handleChange}
           />
+          </div>
+          <div>
 
           <label>Choose Image</label>
          
@@ -337,7 +395,7 @@ const handleRemoveDescription = (index, index2) => {
                     }
                   }}
                 />
-
+                </div>
           <div>
        {subtitles.map((sub, index) => (
          <> 
@@ -387,16 +445,54 @@ const handleRemoveDescription = (index, index2) => {
                     )} */}
             
             </div>
+
+            <div className="radiowrapperclass" style={{display:'flex', alignItems:'center'}}>
+                  <div className="label">
+                    <label for="yes_no_radio">
+                      Subtitle_position
+                    </label>
+                    <label style={{ marginRight: "10px" }}>:</label>
+                  </div>
+                  <div className="radiowrapper" style={{display:'flex'}}>
+                    <p style={{display:'flex', width:'50px' ,color:'#a4a6b0'}}>
+                      <input type="radio" id={`image_position_${index}_top`}
+        name={`image_position_${index}`}
+        value="top"
+        onChange={(e) => handleSubtitlePositionChange(index, e)} 
+                      style={{width: 'max-content', height:'20px'}}
+                       />
+                      Top
+                    </p>
+                    <p style={{display:'flex',width:'80px',color:'#a4a6b0'}}>
+                      <input type="radio" id={`image_position_${index}_middle`}
+        name={`image_position_${index}`}
+        value="middle"
+        onChange={(e) => handleSubtitlePositionChange(index, e)} style={{width: 'max-content', height:'20px'}}
+                     />
+                      Middle
+                    </p>
+
+                    <p style={{display:'flex',width:'80px',color:'#a4a6b0'}}>
+                      <input type="radio" id={`image_position_${index}_bottom`}
+        name={`image_position_${index}`}
+        value="bottom"
+        onChange={(e) => handleSubtitlePositionChange(index, e)} style={{width: 'max-content', height:'20px'}}
+                     />
+                      Bottom
+                    </p>
+                  </div>
+                </div>
           <label>Descriptions</label>
           <div>
             {blog.content[index].description.map((desc, index2) => (
+              <>
               <div key={index2} style={{ marginBottom: '10px', display: 'flex', alignItems: 'center' }}>
                 <textarea
                   type="text"
                   placeholder={`Enter description ${index2 + 1}`}
                   rows={4}
                   name={`description${index2}`}
-                  value={desc}
+                  value={desc.desc}
                   onChange={(e) => handleDescriptionChange(index,index2, e)}
                 />
                 <i
@@ -414,6 +510,30 @@ const handleRemoveDescription = (index, index2) => {
                   </>
                 )}
               </div>
+
+                 <div>
+
+                 <label>Choose description Image</label>
+            
+                 <input
+                         type="file"
+                         accept="image/*"
+                         onChange={(e) => handleDescriptionImageChange(index, index2, e)}
+                       />
+                       {/* {blog.content[index].subtitle_image && blog.content[index].subtitle_image.map((image, i) => (
+                         <img key={i} src={`data:image/jpeg;base64,${image.media_b64}`} alt={`Subtitle ${index + 1}`} style={{width:'70%',height:'70px', padding:'10px', borderRadius:'15px', objectFit:'cover'}} />
+                       ))} */}
+                       {/* {index > 0 && (
+                         <i
+                           className="fa-solid fa-minus"
+                           style={{ color: 'white', marginLeft: '10px', cursor: 'pointer' }}
+                           onClick={() => handleRemoveSubtitle(index)}
+                         ></i>
+                       )} */}
+               
+               </div>
+               </>  
+              
             ))}
           </div>
           </>
