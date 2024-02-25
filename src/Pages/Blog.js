@@ -511,7 +511,7 @@ const handleDescriptionChange = (index,index2, e) => {
                 )}
               </div>
 
-                 <div>
+                 <div style={{marginBottom:'10px'}}>
 
                  <label>Choose description Image</label>
             

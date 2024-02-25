@@ -2,6 +2,8 @@ import React,{useState} from 'react'
 import './BlogItem.css'
 import axios from 'axios';
 import UpdatePost from '../Pages/UpdatePost';
+import { CircleLoader } from 'react-spinners';
+
 const BASE_URL = process.env.BASE_URL || "https://stagingbe.novusaurelius.com/";
 
 
@@ -15,6 +17,7 @@ const BlogItem = (props ) => {
 
   const [successMessage, setSuccessMessage] = useState('');
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // State for loading status
 
   // const updatePost = () => {
   //   setIsUpdateModalOpen(true);
@@ -26,7 +29,7 @@ const BlogItem = (props ) => {
 
 
   const deletePost = async (Id) => {
-    
+    setIsLoading(true);
     try {
       const response = await axios.get(`${BASE_URL}/post_login/blog/delete_blog_post/${Id}`, {
         headers: {
@@ -35,6 +38,7 @@ const BlogItem = (props ) => {
           accesstoken: `${token}`,
         },
       });
+      setIsLoading(false);
       if (response.status === 200) {
         if (response.data.Status === 200) {
           setSuccessMessage('Blog Post Deleted Successfully!');
@@ -54,6 +58,7 @@ const BlogItem = (props ) => {
         console.error("Unexpected status code:", response.status);
       }
     } catch (error) {
+      setIsLoading(false);
       console.error("Error:", error);
     }
   };
@@ -70,9 +75,12 @@ const BlogItem = (props ) => {
                     <div style={{display:'flex',  }}>
 
                     {/* <i className="fa-solid fa-pen-to-square" style={{color:'white', cursor:'pointer',padding:'0px 10px' }} onClick={()=>{updatePost()}}></i> */}
-                    
+                    {isLoading ? ( // Conditional rendering of loader based on loading status
+                <CircleLoader size={20} color={"#ffffff"} />
+              ) : (
                     <i className="fa-solid fa-trash-can" style={{color:'white', cursor:'pointer' }} onClick={()=>{deletePost(Id)}
                     }></i>
+              )}
                     </div>
                     
                   </div>
