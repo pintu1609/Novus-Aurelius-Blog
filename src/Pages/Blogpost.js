@@ -65,10 +65,10 @@ const Blogpost = (props) => {
               navigate('/');
             }
     
-            else {
+            // else {
               
-              console.error("Unsuccessful login:", response.data.Message);
-            }
+            //   console.error("Unsuccessful login:", response.data.Message);
+            // }
           } else {
             
             console.error("Unexpected status code:", response.status);
@@ -105,17 +105,17 @@ const Blogpost = (props) => {
                 console.log("🚀 ~ getPost ~ response:", response)
               } 
               if (response.data.Status === 451) {
-                console.log('🚀 ~ fetchData ~ data.Status:', response.Status === 451);
+                console.log('🚀 ~ fetchData ~ data.Status:', response.data.Status === 451);
                 localStorage.removeItem('token');
   
                 // logout();
                 navigate('/');
               }
       
-              else {
+              // else {
                 
-                console.error("Unsuccessful login:", response.data.Message);
-              }
+              //   console.error("Unsuccessful login:", response.data.Message);
+              // }
             } else {
               
               console.error("Unexpected status code:", response.status);

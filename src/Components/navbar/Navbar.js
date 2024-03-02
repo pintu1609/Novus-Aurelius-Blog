@@ -41,9 +41,8 @@ const Navbar = () => {
                     console.log('🚀 ~ fetchData ~ data.Status:', response.data.Status === 451);
                     localStorage.removeItem('token');
                     navigate('/');
-                } else {
-                    console.error("Unsuccessful login:", response.data.Message);
-                }
+                } 
+                
             } else {
                 console.error("Unexpected status code:", response.status);
             }

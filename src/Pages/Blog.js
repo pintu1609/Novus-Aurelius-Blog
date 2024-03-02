@@ -52,7 +52,7 @@ const Blog = () => {
         media_b64:"",
         file_name:"",
       },
-      image_position: "", // Add subtitle_position here
+      // image_position: "", // Add subtitle_position here
 
       description: [{
        desc: "",
@@ -105,7 +105,7 @@ const Blog = () => {
               media_b64:"",
               file_name:"",
             },
-            image_position: "",
+            // image_position: "",
             description: [{
               desc: "",
              desc_img:{
@@ -293,14 +293,14 @@ const handleDescriptionChange = (index,index2, e) => {
     }
   };
 
-  const handleSubtitlePositionChange = (index, e) => {
-    const { value } = e.target;
-    setBlog((prevFormData) => {
-      const updatedContent = [...prevFormData.content];
-      updatedContent[index].image_position = value;
-      return { ...prevFormData, content: updatedContent };
-    });
-  };
+  // const handleSubtitlePositionChange = (index, e) => {
+  //   const { value } = e.target;
+  //   setBlog((prevFormData) => {
+  //     const updatedContent = [...prevFormData.content];
+  //     updatedContent[index].image_position = value;
+  //     return { ...prevFormData, content: updatedContent };
+  //   });
+  // };
 
   const handleDescriptionImageChange = (index,index2, e) => {
     const file = e.target.files[0];
@@ -446,42 +446,7 @@ const handleDescriptionChange = (index,index2, e) => {
             
             </div>
 
-            <div className="radiowrapperclass" style={{display:'flex', alignItems:'center'}}>
-                  <div className="label">
-                    <label for="yes_no_radio">
-                      Subtitle_position
-                    </label>
-                    <label style={{ marginRight: "10px" }}>:</label>
-                  </div>
-                  <div className="radiowrapper" style={{display:'flex'}}>
-                    <p style={{display:'flex', width:'50px' ,color:'#a4a6b0'}}>
-                      <input type="radio" id={`image_position_${index}_top`}
-        name={`image_position_${index}`}
-        value="top"
-        onChange={(e) => handleSubtitlePositionChange(index, e)} 
-                      style={{width: 'max-content', height:'20px'}}
-                       />
-                      Top
-                    </p>
-                    <p style={{display:'flex',width:'80px',color:'#a4a6b0'}}>
-                      <input type="radio" id={`image_position_${index}_middle`}
-        name={`image_position_${index}`}
-        value="middle"
-        onChange={(e) => handleSubtitlePositionChange(index, e)} style={{width: 'max-content', height:'20px'}}
-                     />
-                      Middle
-                    </p>
-
-                    <p style={{display:'flex',width:'80px',color:'#a4a6b0'}}>
-                      <input type="radio" id={`image_position_${index}_bottom`}
-        name={`image_position_${index}`}
-        value="bottom"
-        onChange={(e) => handleSubtitlePositionChange(index, e)} style={{width: 'max-content', height:'20px'}}
-                     />
-                      Bottom
-                    </p>
-                  </div>
-                </div>
+           
           <label>Descriptions</label>
           <div>
             {blog.content[index].description.map((desc, index2) => (
@@ -520,16 +485,7 @@ const handleDescriptionChange = (index,index2, e) => {
                          accept="image/*"
                          onChange={(e) => handleDescriptionImageChange(index, index2, e)}
                        />
-                       {/* {blog.content[index].subtitle_image && blog.content[index].subtitle_image.map((image, i) => (
-                         <img key={i} src={`data:image/jpeg;base64,${image.media_b64}`} alt={`Subtitle ${index + 1}`} style={{width:'70%',height:'70px', padding:'10px', borderRadius:'15px', objectFit:'cover'}} />
-                       ))} */}
-                       {/* {index > 0 && (
-                         <i
-                           className="fa-solid fa-minus"
-                           style={{ color: 'white', marginLeft: '10px', cursor: 'pointer' }}
-                           onClick={() => handleRemoveSubtitle(index)}
-                         ></i>
-                       )} */}
+                       
                
                </div>
                </>  
