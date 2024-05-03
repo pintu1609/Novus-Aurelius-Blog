@@ -41,7 +41,7 @@ const BlogDetails = () => {
     } catch (error) {
       console.error("Error:", error);
     }
-  }, [item.blog_id, token]);
+  }, [item.blog_id, token,profileid]);
 
   useEffect(() => {
     getPostdetails();

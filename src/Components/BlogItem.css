@@ -51,7 +51,7 @@
     }
     .modalbtt{
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         gap: 10px;
         .btt{
             background-color: #1b3298;
