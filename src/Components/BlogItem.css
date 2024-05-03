@@ -41,3 +41,29 @@
 
 }
 }
+.modalcontent{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .title{
+        color: white;
+        font-size: 25px;
+    }
+    .modalbtt{
+        display: flex;
+        justify-content: end;
+        gap: 10px;
+        .btt{
+            background-color: #1b3298;
+         color: white;
+         padding: 5px 20px;
+         font-weight: 500;
+         height: 40px;
+         border: none;
+         cursor: pointer;
+         border-radius: 10px;
+         font-size: 16px;
+        }
+
+    }
+}

@@ -10,12 +10,15 @@ const BlogDetails = () => {
   const item = location.state;
   const token = localStorage.getItem("token");
   const [blogDetails, setBlogDetails] = useState(null);
+  const profileid= localStorage.getItem("user_profile_id")
 
   const getPostdetails = useCallback(async () => {
     try {
       const response = await axios.post(
         `${BASE_URL}/post_login/blog/fetch_blog_post/`,
-        { blog_id: item.blog_id },
+        { blog_id: item.blog_id,
+          user_profile_id:profileid? profileid:null
+         },
         {
           headers: {
             Authorization:
@@ -81,7 +84,7 @@ const BlogDetails = () => {
             </div>
           </div>
           <img
-            style={{ borderRadius: "15px", objectFit: "cover" }}
+            style={{ borderRadius: "15px" }}
             height={"400px"}
             width={"100%"}
             src={blogDetails.map((item) => item?.blog_image_url)}
